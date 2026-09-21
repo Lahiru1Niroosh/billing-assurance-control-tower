@@ -118,9 +118,9 @@ req["benefit_cost_ratio"] = (
     req["estimated_retention_value"] / req["discount_cost"]
 ).round(3)
 
-# Relative value tier inside the request population
+# Relative revenue tier inside the request population (contract-independent)
 req["value_tier"] = pd.qcut(
-    req["customer_value"].rank(method="first"),
+    req["current_monthly_charge"].rank(method="first"),
     q=[0, 0.5, 0.8, 1.0],
     labels=["Standard", "High", "Strategic"],
 )
