@@ -1,0 +1,305 @@
+record_id,customerID,primary_rule,rules_fired,severity,exposure,tenure,MonthlyCharges,expected_monthly,TotalCharges,Contract,PaymentMethod
+4266,2632-UCGVD,total_variance,total_variance,HIGH,62115.7,66,100.05,99.93,68719.0,Month-to-month,Credit card (automatic)
+831,9101-BWFSS,total_variance,total_variance,HIGH,50679.5,50,108.55,109.94,56107.0,One year,Electronic check
+4627,0929-PECLO,total_variance,total_variance,HIGH,49743.2,63,89.6,89.95,55388.0,Month-to-month,Bank transfer (automatic)
+1927,6651-AZVTJ,total_variance,total_variance,HIGH,43834.3,49,99.8,99.91,48724.5,Month-to-month,Electronic check
+4883,8404-VIOMB,total_variance,total_variance,HIGH,37239.0,66,62.5,64.93,41364.0,Two year,Bank transfer (automatic)
+1858,9359-JANWS,total_variance,total_variance,HIGH,34742.5,65,58.9,60.04,38571.0,Two year,Credit card (automatic)
+2119,9779-DPNEJ,total_variance,total_variance,HIGH,16143.2,22,80.15,79.95,17906.5,Month-to-month,Electronic check
+5493,2799-TSLAG,total_variance,total_variance,HIGH,15841.0,65,25.3,24.96,17485.5,Two year,Bank transfer (automatic)
+3214,4032-RMHCI,total_variance,total_variance,HIGH,12672.6,41,35.4,34.97,14124.0,One year,Credit card (automatic)
+2544,0952-KMEEH,total_variance,total_variance,HIGH,11026.55,13,98.15,99.92,12302.5,Month-to-month,Mailed check
+438,4376-KFVRS,total_missing,total_missing,HIGH,8211.6,72,114.05,114.94,,Two year,Credit card (automatic)
+242,6614-FHDBO,total_missing,total_missing,HIGH,7862.4,72,109.2,109.93,,Two year,Bank transfer (automatic)
+3953,9861-PDSZP,total_missing,total_missing,HIGH,7779.6,72,108.05,109.93,,Two year,Credit card (automatic)
+6409,5748-RNCJT,total_missing,total_missing,HIGH,7348.5,69,106.5,104.92,,Two year,Bank transfer (automatic)
+5290,3642-GKTCT,total_missing,total_missing,HIGH,7021.1,61,115.1,114.94,,One year,Mailed check
+3857,6710-HSJRD,total_missing,"total_missing,rate_mismatch",HIGH,6960.1,61,114.1,109.93,,Month-to-month,Electronic check
+884,3199-NPKCN,total_variance,total_variance,HIGH,6702.59,67,111.25,109.93,751.16,One year,Electronic check
+2283,1587-FKLZB,total_missing,total_missing,HIGH,6567.0,66,99.5,99.91,,Month-to-month,Credit card (automatic)
+633,1775-KWJKQ,total_missing,total_missing,HIGH,6469.2,72,89.85,89.98,,Two year,Credit card (automatic)
+2529,4277-PVRAN,total_variance,total_variance,HIGH,6152.2,8,80.1,79.94,6793.0,Month-to-month,Bank transfer (automatic)
+6672,5090-EMGTC,total_missing,total_missing,HIGH,5902.95,59,100.05,99.94,,Two year,Mailed check
+467,9076-AXYIK,total_variance,total_variance,HIGH,5880.56,64,102.1,104.92,653.84,Two year,Electronic check
+6966,7789-CRUVC,total_missing,total_missing,HIGH,5746.2,61,94.2,95.0,,Month-to-month,Credit card (automatic)
+407,4742-DRORA,total_missing,total_missing,HIGH,5724.0,60,95.4,94.94,,One year,Bank transfer (automatic)
+898,0678-RLHVP,total_missing,total_missing,HIGH,5594.15,53,105.55,104.92,,Two year,Electronic check
+3241,8849-GYOKR,total_variance,total_variance,HIGH,5177.37,54,106.55,104.93,576.33,One year,Bank transfer (automatic)
+2577,1074-AMIOH,total_variance,total_variance,HIGH,5143.74,53,108.25,104.94,593.51,Month-to-month,Bank transfer (automatic)
+1874,0973-KYVNF,total_missing,total_missing,HIGH,5086.8,72,70.65,69.99,,Two year,Credit card (automatic)
+3132,8336-TAVKX,total_variance,total_variance,HIGH,5080.18,72,78.45,80.02,568.22,Two year,Bank transfer (automatic)
+528,3571-DPYUH,total_variance,total_variance,HIGH,4949.56,58,94.7,94.96,543.04,One year,Credit card (automatic)
+3429,8749-JMNKX,total_missing,total_missing,HIGH,4783.8,51,93.8,94.94,,Month-to-month,Bank transfer (automatic)
+1254,2026-TGDHM,total_variance,total_variance,HIGH,4676.4,7,79.3,79.95,5231.5,Month-to-month,Electronic check
+2385,2573-GYRUU,total_missing,total_missing,HIGH,4370.4,48,91.05,89.95,,Month-to-month,Credit card (automatic)
+1571,3070-FNFZQ,total_variance,total_variance,HIGH,4318.3,23,20.4,19.96,4787.5,Two year,Bank transfer (automatic)
+3743,9822-WMWVG,total_variance,total_variance,HIGH,3938.26,41,106.5,104.96,428.24,Month-to-month,Electronic check
+4896,1394-SUIUH,total_missing,total_missing,HIGH,3746.6,44,85.15,85.0,,Month-to-month,Electronic check
+4817,5906-DVAPM,total_variance,total_variance,HIGH,3703.61,55,75.0,75.0,421.39,One year,Credit card (automatic)
+302,8098-LLAZX,total_variance,total_variance,HIGH,3579.2,4,95.45,94.91,3961.0,Month-to-month,Electronic check
+645,8404-VLQFB,total_variance,total_variance,HIGH,3569.75,15,25.25,24.96,3948.5,Month-to-month,Electronic check
+6247,7054-DMVAS,total_missing,total_missing,HIGH,3526.2,54,65.3,64.99,,Two year,Bank transfer (automatic)
+4001,0420-HLGXF,total_variance,total_variance,HIGH,3486.65,39,99.75,99.91,403.6,Month-to-month,Electronic check
+6677,5274-XHAKY,total_variance,total_variance,HIGH,3476.94,41,94.3,94.95,389.36,Month-to-month,Bank transfer (automatic)
+5211,2794-XIMMO,total_missing,total_missing,HIGH,3203.85,53,60.45,59.93,,One year,Electronic check
+4475,1139-WUOAH,total_missing,total_missing,HIGH,3040.95,57,53.35,54.92,,Two year,Credit card (automatic)
+4731,7813-ZGGAW,total_missing,total_missing,HIGH,2994.6,31,96.6,94.95,,Month-to-month,Bank transfer (automatic)
+1114,7627-JKIAZ,total_missing,total_missing,HIGH,2921.15,37,78.95,79.97,,Month-to-month,Credit card (automatic)
+3188,7682-AZNDK,total_variance,total_variance,HIGH,2745.72,34,89.85,89.94,309.18,Month-to-month,Electronic check
+3603,3038-PQIUY,total_missing,total_missing,HIGH,2513.7,38,66.15,65.03,,Month-to-month,Bank transfer (automatic)
+3808,8625-AZYZY,total_missing,total_missing,HIGH,2511.6,24,104.65,104.92,,Month-to-month,Electronic check
+3514,4063-EIKNQ,total_variance,total_variance,HIGH,2443.05,11,20.95,19.96,2673.5,Month-to-month,Bank transfer (automatic)
+2543,4826-DXMUP,total_variance,total_variance,HIGH,2273.98,35,72.1,69.97,249.52,One year,Mailed check
+1636,2988-PLAHS,total_variance,total_variance,HIGH,1994.65,3,69.95,69.96,2204.5,One year,Electronic check
+3014,2065-MMKGR,total_variance,total_variance,HIGH,1850.99,29,71.0,69.95,208.01,One year,Credit card (automatic)
+3479,7673-LPRNY,total_missing,total_missing,HIGH,1806.65,23,78.55,79.96,,One year,Electronic check
+5232,1075-BGWOH,total_missing,total_missing,HIGH,1580.0,16,98.75,99.91,,Month-to-month,Electronic check
+2000,3858-VOBET,total_variance,total_variance,HIGH,1552.81,23,74.95,74.97,171.04,Month-to-month,Electronic check
+2410,3275-RHRNE,total_variance,total_variance,HIGH,1511.8,28,60.0,59.93,168.2,One year,Credit card (automatic)
+4742,6583-KQJLK,total_missing,total_missing,HIGH,1419.75,15,94.65,94.92,,Month-to-month,Electronic check
+552,1352-HNSAW,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1379.28,72,0.0,114.94,8220.4,Two year,Bank transfer (automatic)
+3895,5989-AXPUC,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1379.28,68,0.0,114.94,7990.05,Two year,Mailed check
+5037,1268-ASBGA,total_missing,total_missing,HIGH,1365.6,16,85.35,84.95,,Month-to-month,Credit card (automatic)
+1842,8958-JPTRR,total_missing,total_missing,HIGH,1360.8,56,24.3,24.96,,One year,Electronic check
+7077,5304-EFJLP,duplicate_id,duplicate_id,HIGH,1339.8,72,111.65,109.93,8022.85,Two year,Bank transfer (automatic)
+7083,5440-VHLUL,duplicate_id,duplicate_id,HIGH,1262.4,69,105.2,104.93,7386.05,One year,Bank transfer (automatic)
+4429,5449-FIBXJ,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1259.04,19,0.0,104.92,2012.7,Month-to-month,Electronic check
+7082,2038-LLMLM,duplicate_id,duplicate_id,HIGH,1246.2,48,103.85,104.92,4946.05,Month-to-month,Electronic check
+5485,4419-UJMUS,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1199.16,69,0.0,99.93,6856.45,Two year,Electronic check
+2961,5590-BYNII,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1199.04,22,0.0,99.92,2095.0,Month-to-month,Electronic check
+2164,4021-RQSNY,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1198.92,29,0.0,99.91,3004.15,Month-to-month,Electronic check
+7063,2277-DJJDL,duplicate_id,duplicate_id,HIGH,1188.0,60,99.0,99.93,6017.9,Month-to-month,Electronic check
+7079,3853-LYGAM,duplicate_id,duplicate_id,HIGH,1147.8,17,95.65,94.96,1640.0,Month-to-month,Bank transfer (automatic)
+1133,5293-WXJAK,total_missing,total_missing,HIGH,1144.55,11,104.05,104.92,,Month-to-month,Bank transfer (automatic)
+6353,2347-WKKAE,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1139.4,42,0.0,94.95,4014.6,Month-to-month,Electronic check
+6314,0754-UKWQP,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1138.92,2,0.0,94.91,197.7,Month-to-month,Electronic check
+7069,1732-FEKLD,duplicate_id,duplicate_id,HIGH,1137.0,54,94.75,94.94,5121.75,One year,Bank transfer (automatic)
+7051,5281-BUZGT,duplicate_id,duplicate_id,HIGH,1090.2,36,90.85,89.94,3186.7,Month-to-month,Electronic check
+5135,8010-EZLOU,total_variance,total_variance,HIGH,1081.28,15,80.2,79.98,121.72,Month-to-month,Electronic check
+1904,3318-NMQXL,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1079.04,3,0.0,89.92,266.8,Month-to-month,Electronic check
+7071,8079-XRJRS,duplicate_id,duplicate_id,HIGH,1077.0,65,89.75,89.98,5769.6,One year,Electronic check
+5949,1414-YADCW,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1020.0,70,0.0,85.0,5706.2,Two year,Bank transfer (automatic)
+215,2504-DSHIH,zero_monthly,"zero_monthly,rate_mismatch",HIGH,1019.4,23,0.0,84.95,1975.85,Month-to-month,Electronic check
+7064,7613-LLQFO,duplicate_id,duplicate_id,HIGH,1013.4,12,84.45,84.93,1059.55,Month-to-month,Electronic check
+5955,7395-XWZOY,total_variance,total_variance,MEDIUM,983.44,20,55.0,54.96,116.56,Month-to-month,Credit card (automatic)
+7061,4614-NUVZD,duplicate_id,duplicate_id,MEDIUM,973.2,1,81.1,79.95,81.1,Month-to-month,Electronic check
+7058,9689-PTNPG,duplicate_id,duplicate_id,MEDIUM,963.0,2,80.25,79.94,144.55,Month-to-month,Electronic check
+797,2040-OBMLJ,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,959.88,31,0.0,79.99,2548.65,One year,Credit card (automatic)
+3219,6869-FGJJC,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,959.76,68,0.0,79.98,5461.45,One year,Credit card (automatic)
+3273,6772-KSATR,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,959.76,1,0.0,79.98,81.7,Month-to-month,Electronic check
+7060,4210-QFJMF,duplicate_id,duplicate_id,MEDIUM,949.8,4,79.15,79.95,317.25,Month-to-month,Electronic check
+7085,0565-IYCGT,duplicate_id,duplicate_id,MEDIUM,943.2,69,78.6,80.02,5356.45,One year,Credit card (automatic)
+7004,4501-VCPFK,total_missing,total_missing,MEDIUM,929.5,26,35.75,34.98,,Month-to-month,Electronic check
+6144,5774-QPLTF,total_variance,total_variance,MEDIUM,923.6,50,20.35,19.96,93.9,One year,Mailed check
+7076,6217-TOWGS,duplicate_id,duplicate_id,MEDIUM,904.8,17,75.4,74.96,1322.55,Month-to-month,Bank transfer (automatic)
+6578,6953-PBDIN,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,900.0,70,0.0,75.0,5265.55,Two year,Bank transfer (automatic)
+2925,1428-GTBJJ,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,899.76,11,0.0,74.98,824.75,Month-to-month,Electronic check
+673,3276-HDUEG,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,899.64,1,0.0,74.97,75.05,Month-to-month,Mailed check
+5482,8473-VUVJN,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,899.64,1,0.0,74.97,73.65,Month-to-month,Electronic check
+7078,4654-ULTTN,duplicate_id,duplicate_id,MEDIUM,897.6,70,74.8,75.01,5315.8,Two year,Credit card (automatic)
+2835,4518-FZBSX,total_missing,total_missing,MEDIUM,850.5,42,20.25,19.96,,One year,Mailed check
+7067,9605-WGJVW,duplicate_id,duplicate_id,MEDIUM,842.4,1,70.2,69.98,70.2,Month-to-month,Electronic check
+3286,7197-VOJMM,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,840.36,67,0.0,70.03,4671.65,Two year,Credit card (automatic)
+6676,4186-ZBUEW,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,840.12,36,0.0,70.01,2511.95,One year,Mailed check
+3057,0263-FJTQO,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,840.0,50,0.0,70.0,3486.65,Two year,Credit card (automatic)
+7059,1852-XEMDW,duplicate_id,duplicate_id,MEDIUM,780.6,22,65.05,65.03,1427.55,Month-to-month,Mailed check
+7054,7945-HLKEA,duplicate_id,duplicate_id,MEDIUM,777.0,60,64.75,65.03,4039.5,One year,Electronic check
+7066,2535-PBCGC,duplicate_id,duplicate_id,MEDIUM,774.6,70,64.55,64.93,4504.9,Two year,Bank transfer (automatic)
+7074,2408-PSJVE,duplicate_id,duplicate_id,MEDIUM,742.8,44,61.9,60.04,2924.05,Month-to-month,Mailed check
+5774,0289-IVARM,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,720.36,35,0.0,60.03,1982.6,Month-to-month,Electronic check
+5645,9444-JTXHZ,total_variance,total_variance,MEDIUM,685.8,1,76.2,74.98,762.0,Month-to-month,Electronic check
+7080,5206-HPJKM,duplicate_id,duplicate_id,MEDIUM,666.0,17,55.5,55.03,934.15,Month-to-month,Credit card (automatic)
+1065,3800-LYTRK,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,660.48,14,0.0,55.04,795.15,One year,Mailed check
+5325,7901-IIDQV,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,660.36,24,0.0,55.03,1242.25,One year,Bank transfer (automatic)
+2249,9554-DFKIC,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,660.24,30,0.0,55.02,1588.7,Month-to-month,Bank transfer (automatic)
+7084,0156-FVPTA,duplicate_id,duplicate_id,MEDIUM,650.4,22,54.2,55.04,1152.7,Month-to-month,Electronic check
+4647,5032-MIYKT,total_variance,total_variance,MEDIUM,636.3,1,70.7,69.98,707.0,Month-to-month,Mailed check
+7068,1310-QRITU,duplicate_id,duplicate_id,MEDIUM,603.6,18,50.3,50.02,913.3,Month-to-month,Electronic check
+6824,7009-LGECI,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,600.36,4,0.0,50.03,235.65,Month-to-month,Bank transfer (automatic)
+7075,6075-QMNRR,duplicate_id,duplicate_id,MEDIUM,597.0,52,49.75,50.03,2535.55,Month-to-month,Bank transfer (automatic)
+3045,5692-FPTAH,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,540.24,1,0.0,45.02,45.4,Month-to-month,Mailed check
+2761,9534-NSXEM,total_missing,total_missing,MEDIUM,536.9,26,20.65,19.96,,One year,Credit card (automatic)
+7053,4959-JOSRX,duplicate_id,duplicate_id,MEDIUM,535.2,2,44.6,45.02,80.55,Month-to-month,Credit card (automatic)
+2863,5027-QPKTE,total_missing,total_missing,MEDIUM,485.45,7,69.35,69.98,,Month-to-month,Electronic check
+6221,6434-TTGJP,total_variance,total_variance,MEDIUM,484.9,10,53.7,54.97,52.1,Two year,Credit card (automatic)
+5061,6133-OZILE,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,419.76,18,0.0,34.98,607.3,Month-to-month,Electronic check
+631,5099-BAILX,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,418.32,43,144.79,109.93,4687.9,Month-to-month,Bank transfer (automatic)
+7044,8259-NFJTV,duplicate_id,duplicate_id,MEDIUM,415.8,7,34.65,34.99,246.6,Month-to-month,Mailed check
+1311,6393-WRYZE,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,404.16,34,128.59,94.91,3207.55,Month-to-month,Electronic check
+1171,9127-FHJBZ,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,400.56,72,148.32,114.94,8093.15,Two year,Electronic check
+3043,1322-AGOQM,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,359.76,46,0.0,29.98,1380.1,Month-to-month,Bank transfer (automatic)
+3903,5999-LCXAO,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,359.64,1,0.0,29.97,29.9,Month-to-month,Mailed check
+6874,6369-MCAKO,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,351.0,68,119.23,89.98,6185.8,Two year,Bank transfer (automatic)
+1663,2058-DCJBE,total_missing,total_missing,MEDIUM,348.75,5,69.75,69.98,,Month-to-month,Electronic check
+5761,4583-PARNH,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,325.32,16,117.08,89.97,1540.05,Month-to-month,Electronic check
+51,8012-SOUDQ,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,312.12,43,115.95,89.94,3838.75,Month-to-month,Electronic check
+7081,1814-DKOLC,duplicate_id,duplicate_id,MEDIUM,305.4,5,25.45,24.96,134.75,Month-to-month,Mailed check
+7057,6814-ZPWFQ,duplicate_id,duplicate_id,MEDIUM,300.0,51,25.0,24.96,1260.7,One year,Bank transfer (automatic)
+744,4018-PPNDW,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,299.52,61,0.0,24.96,1551.6,Two year,Mailed check
+2507,8735-SDUFN,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,299.52,72,0.0,24.96,1778.7,Two year,Bank transfer (automatic)
+5871,0568-ONFPC,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,299.52,5,0.0,24.96,135.0,Month-to-month,Bank transfer (automatic)
+5583,7601-DHFWZ,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,299.52,48,0.0,24.96,1183.05,Two year,Credit card (automatic)
+5753,7480-SPLEF,zero_monthly,"zero_monthly,rate_mismatch",MEDIUM,299.52,69,0.0,24.96,1796.55,Two year,Bank transfer (automatic)
+1709,8640-SDGKB,total_missing,total_missing,MEDIUM,297.6,4,74.4,74.97,,Month-to-month,Electronic check
+5406,4097-YODCF,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,296.64,34,129.65,104.93,3470.8,One year,Electronic check
+7062,0402-OAMEN,duplicate_id,duplicate_id,MEDIUM,293.4,72,24.45,24.96,1709.1,Two year,Bank transfer (automatic)
+610,3419-SNJJD,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,273.6,65,127.72,104.92,6786.4,Month-to-month,Bank transfer (automatic)
+3484,4465-VDKIQ,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,269.76,18,102.46,79.98,1358.6,Month-to-month,Electronic check
+5360,5143-EGQFK,total_variance,total_variance,MEDIUM,267.36,10,29.65,29.98,29.14,Month-to-month,Electronic check
+1679,1060-ENTOF,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,266.16,67,127.16,104.98,7035.6,One year,Credit card (automatic)
+3490,0975-UYDTX,rate_mismatch,"rate_mismatch,total_variance",MEDIUM,253.08,26,111.07,89.98,2312.55,One year,Credit card (automatic)
+5384,2362-IBOOY,rate_mismatch,"rate_mismatch,total_variance",LOW,247.08,36,105.54,84.95,3050.15,Month-to-month,Electronic check
+7046,8189-DUKMV,duplicate_id,duplicate_id,LOW,246.0,4,20.5,19.96,79.05,One year,Bank transfer (automatic)
+7072,2792-VPPET,duplicate_id,"duplicate_id,total_variance",LOW,246.0,3,20.5,19.96,76.95,Month-to-month,Electronic check
+7050,8590-OHDIW,duplicate_id,duplicate_id,LOW,243.6,38,20.3,19.96,749.35,One year,Mailed check
+7049,4393-OBCRR,duplicate_id,duplicate_id,LOW,243.0,3,20.25,19.96,71.2,One year,Mailed check
+7052,2300-RQGOI,duplicate_id,duplicate_id,LOW,240.6,38,20.05,19.96,741.5,Two year,Mailed check
+7055,6551-VLJMV,duplicate_id,duplicate_id,LOW,240.6,34,20.05,19.96,679.0,Two year,Credit card (automatic)
+4415,5372-FBKBN,zero_monthly,"zero_monthly,rate_mismatch",LOW,239.52,21,0.0,19.96,452.2,Month-to-month,Mailed check
+588,8752-IMQOS,zero_monthly,"zero_monthly,rate_mismatch",LOW,239.52,5,0.0,19.96,85.1,One year,Mailed check
+5358,1460-UZPRJ,zero_monthly,"zero_monthly,rate_mismatch",LOW,239.52,60,0.0,19.96,1258.15,Two year,Mailed check
+3934,5396-IZEPB,zero_monthly,"zero_monthly,rate_mismatch",LOW,239.52,9,0.0,19.96,180.7,Month-to-month,Credit card (automatic)
+3430,7872-BAAZR,zero_monthly,"zero_monthly,rate_mismatch",LOW,239.52,53,0.0,19.96,1007.9,One year,Bank transfer (automatic)
+3023,1796-JANOW,zero_monthly,"zero_monthly,rate_mismatch",LOW,239.52,2,0.0,19.96,38.15,Month-to-month,Mailed check
+5759,5847-MXBEO,zero_monthly,"zero_monthly,rate_mismatch",LOW,239.52,22,0.0,19.96,475.1,One year,Mailed check
+7065,9371-BITHB,duplicate_id,duplicate_id,LOW,238.2,52,19.85,19.96,1070.5,Two year,Mailed check
+7073,0831-JNISG,duplicate_id,duplicate_id,LOW,237.6,71,19.8,19.96,1396.25,Two year,Mailed check
+1500,1728-CXQBE,rate_mismatch,"rate_mismatch,total_variance",LOW,236.76,64,114.69,94.96,6081.4,Month-to-month,Electronic check
+7047,7762-ONLJY,duplicate_id,"duplicate_id,total_variance",LOW,236.4,6,19.7,19.96,94.45,One year,Mailed check
+2439,7089-IVVAZ,rate_mismatch,rate_mismatch,LOW,234.96,8,124.51,104.93,847.3,Month-to-month,Bank transfer (automatic)
+7056,3777-XROBG,duplicate_id,duplicate_id,LOW,234.6,58,19.55,19.96,1079.65,Two year,Credit card (automatic)
+7048,1166-PQLGG,duplicate_id,duplicate_id,LOW,234.6,72,19.55,19.96,1463.45,Two year,Bank transfer (automatic)
+7070,4311-QTTAI,duplicate_id,duplicate_id,LOW,232.2,16,19.35,19.96,295.55,One year,Credit card (automatic)
+1382,3717-OEAUQ,rate_mismatch,"rate_mismatch,total_variance",LOW,228.0,2,88.98,69.98,129.2,Month-to-month,Mailed check
+7045,3806-YAZOV,duplicate_id,duplicate_id,LOW,225.6,3,18.8,19.96,56.0,Month-to-month,Mailed check
+3237,5402-HTOTQ,rate_mismatch,"rate_mismatch,total_variance",LOW,223.56,16,73.65,55.02,875.35,Month-to-month,Electronic check
+5026,7326-RIGQZ,rate_mismatch,"rate_mismatch,total_variance",LOW,220.44,6,88.35,69.98,377.85,Month-to-month,Electronic check
+4341,4468-YDOVK,total_variance,total_variance,LOW,219.73,5,48.65,50.03,23.52,Month-to-month,Bank transfer (automatic)
+159,6371-NZYEG,rate_mismatch,"rate_mismatch,total_variance",LOW,219.48,16,83.28,64.99,1024.0,Two year,Mailed check
+6744,2740-JFBOK,total_variance,total_variance,LOW,217.34,10,24.0,24.96,22.66,Month-to-month,Electronic check
+5896,8033-ATFAS,rate_mismatch,"rate_mismatch,total_variance",LOW,214.68,39,77.87,59.98,2341.5,Month-to-month,Mailed check
+617,6464-KEXXH,total_missing,total_missing,LOW,202.0,8,25.25,24.97,,Month-to-month,Credit card (automatic)
+5975,7094-MSZAO,total_missing,total_missing,LOW,200.5,10,20.05,19.96,,Month-to-month,Credit card (automatic)
+3035,7120-RFMVS,rate_mismatch,rate_mismatch,LOW,191.04,1,100.85,84.93,84.5,Month-to-month,Electronic check
+1389,9089-UOWJG,rate_mismatch,"rate_mismatch,total_variance",LOW,189.96,12,75.81,59.98,740.55,Month-to-month,Credit card (automatic)
+2342,4304-TSPVK,rate_mismatch,rate_mismatch,LOW,185.76,68,130.42,114.94,7843.55,Two year,Bank transfer (automatic)
+6499,0742-NXBGR,rate_mismatch,rate_mismatch,LOW,184.08,1,95.32,79.98,82.3,Month-to-month,Electronic check
+4420,1045-LTCYT,total_missing,total_missing,LOW,168.4,8,21.05,19.96,,Month-to-month,Credit card (automatic)
+1343,2017-CCBLH,total_missing,total_missing,LOW,160.0,8,20.0,19.96,,Two year,Mailed check
+4803,9972-NKTFD,rate_mismatch,"rate_mismatch,total_variance",LOW,151.92,28,67.7,55.04,1517.5,Month-to-month,Bank transfer (automatic)
+1426,7077-XJMET,total_variance,total_variance,LOW,148.4,12,74.15,74.97,741.4,Month-to-month,Electronic check
+4615,4732-RRJZC,total_missing,total_missing,LOW,141.75,7,20.25,19.96,,Month-to-month,Mailed check
+4709,5181-OABFK,rate_mismatch,"rate_mismatch,total_variance",LOW,141.48,56,71.82,60.03,3346.8,Two year,Credit card (automatic)
+2345,9796-MVYXX,total_variance,total_variance,LOW,136.55,14,39.7,39.99,692.35,Two year,Mailed check
+5528,5985-BEHZK,rate_mismatch,rate_mismatch,LOW,134.76,72,116.15,104.92,7578.05,One year,Credit card (automatic)
+974,8919-FYFQZ,rate_mismatch,"rate_mismatch,total_variance",LOW,125.76,44,40.46,29.98,1359.7,Month-to-month,Electronic check
+3066,5133-POWUA,rate_mismatch,"rate_mismatch,total_variance",LOW,120.96,1,55.1,45.02,45.8,Month-to-month,Mailed check
+2250,5527-ACHSO,rate_mismatch,rate_mismatch,LOW,117.12,11,79.73,69.97,829.3,Month-to-month,Mailed check
+1070,8883-GRDWQ,rate_mismatch,"rate_mismatch,total_variance",LOW,116.76,20,64.77,55.04,1055.9,One year,Mailed check
+4649,9717-QEBGU,rate_mismatch,rate_mismatch,LOW,115.8,2,79.63,69.98,144.0,Month-to-month,Electronic check
+2558,4061-UKJWL,rate_mismatch,rate_mismatch,LOW,100.68,3,53.41,45.02,141.7,Month-to-month,Mailed check
+2870,2672-HUYVI,total_variance,total_variance,LOW,91.3,6,91.1,89.92,455.3,Month-to-month,Electronic check
+971,7294-TMAOP,total_missing,total_missing,LOW,90.55,1,90.55,89.92,,Month-to-month,Electronic check
+5123,4353-HYOJD,rate_mismatch,rate_mismatch,LOW,87.48,27,57.32,50.03,1336.15,Month-to-month,Mailed check
+2120,9805-FILKB,rate_mismatch,"rate_mismatch,total_variance",LOW,85.68,46,27.1,19.96,845.6,One year,Bank transfer (automatic)
+6907,9945-PSVIP,total_variance,total_variance,LOW,83.85,25,18.7,19.96,383.65,Two year,Mailed check
+1847,7369-TRPFD,total_variance,total_variance,LOW,78.0,19,18.8,19.96,279.2,One year,Mailed check
+3540,2219-MVUSO,total_variance,total_variance,LOW,77.2,8,45.15,45.02,438.4,Month-to-month,Mailed check
+4666,3884-UEBXB,rate_mismatch,rate_mismatch,LOW,68.88,67,40.72,34.98,2434.45,Two year,Bank transfer (automatic)
+4553,1385-TQOZW,rate_mismatch,"rate_mismatch,total_variance",LOW,67.44,9,25.58,19.96,147.55,Month-to-month,Credit card (automatic)
+2424,1133-KXCGE,rate_mismatch,rate_mismatch,LOW,62.4,18,25.16,19.96,407.05,One year,Mailed check
+6765,7660-HDPJV,total_variance,total_variance,LOW,62.28,1,69.2,69.98,6.92,Month-to-month,Electronic check
+1609,2387-KDZQY,total_variance,total_variance,LOW,62.2,17,20.1,19.96,279.5,One year,Mailed check
+6926,6508-NJYRO,rate_mismatch,"rate_mismatch,total_variance",LOW,60.84,15,25.03,19.96,294.95,One year,Mailed check
+3433,8174-TBVCF,rate_mismatch,rate_mismatch,LOW,57.84,70,94.8,89.98,6859.05,Two year,Credit card (automatic)
+6620,2791-SFVEW,total_variance,total_variance,LOW,56.8,9,20.15,19.96,238.15,Month-to-month,Bank transfer (automatic)
+6161,0725-CXOTM,rate_mismatch,rate_mismatch,LOW,56.16,36,89.65,84.97,3348.1,One year,Credit card (automatic)
+3938,5712-VBOXD,rate_mismatch,"rate_mismatch,total_variance",LOW,56.04,4,24.63,19.96,68.45,Month-to-month,Credit card (automatic)
+6009,4451-RWASJ,total_variance,total_variance,LOW,52.75,15,19.5,19.96,239.75,One year,Mailed check
+5227,8044-BGWPI,total_variance,total_variance,LOW,52.25,12,21.15,19.96,306.05,Month-to-month,Electronic check
+3409,2108-YKQTY,total_variance,total_variance,LOW,51.5,4,50.7,50.03,151.3,Month-to-month,Credit card (automatic)
+5686,4475-NVTLU,rate_mismatch,"rate_mismatch,total_variance",LOW,51.48,45,24.25,19.96,903.7,Two year,Electronic check
+342,6885-PKOAM,rate_mismatch,rate_mismatch,LOW,50.76,71,85.75,89.98,6223.8,Two year,Credit card (automatic)
+1188,8089-UZWLX,rate_mismatch,rate_mismatch,LOW,49.68,71,104.05,99.91,7413.55,Two year,Bank transfer (automatic)
+5852,4118-CEVPF,rate_mismatch,rate_mismatch,LOW,49.68,35,110.8,114.94,3836.3,One year,Bank transfer (automatic)
+4044,3308-JSGML,rate_mismatch,rate_mismatch,LOW,49.44,59,64.05,59.93,3886.85,Two year,Credit card (automatic)
+6829,2005-DWQZJ,total_variance,total_variance,LOW,49.3,8,19.05,19.96,201.7,Two year,Mailed check
+5191,3001-UNBTL,rate_mismatch,rate_mismatch,LOW,48.48,29,103.95,99.91,2964.8,Month-to-month,Electronic check
+95,9848-JQJTX,rate_mismatch,rate_mismatch,LOW,48.24,72,100.9,104.92,7459.05,Two year,Bank transfer (automatic)
+2859,9512-PHSMG,total_variance,total_variance,LOW,47.25,10,20.55,19.96,252.75,Month-to-month,Mailed check
+1662,3761-FLYZI,rate_mismatch,rate_mismatch,LOW,46.56,65,108.8,104.92,7082.45,Month-to-month,Bank transfer (automatic)
+1140,3082-WQRVY,total_variance,total_variance,LOW,46.45,14,19.65,19.96,228.65,One year,Mailed check
+4587,7569-NMZYQ,rate_mismatch,rate_mismatch,LOW,45.72,72,118.75,114.94,8672.45,Two year,Bank transfer (automatic)
+694,2276-YDAVZ,total_variance,total_variance,LOW,45.4,3,75.1,74.97,270.7,Month-to-month,Credit card (automatic)
+2116,8984-HPEMB,rate_mismatch,rate_mismatch,LOW,44.52,71,118.65,114.94,8477.6,Two year,Electronic check
+4204,4291-YZODP,total_variance,total_variance,LOW,43.55,7,20.05,19.96,96.8,One year,Mailed check
+2479,7878-JGDKK,total_variance,total_variance,LOW,42.55,4,44.55,45.02,220.75,Month-to-month,Mailed check
+870,0323-XWWTN,total_variance,total_variance,LOW,42.05,3,26.4,24.96,121.25,Two year,Mailed check
+3251,6924-TDGMT,total_variance,total_variance,LOW,41.1,11,20.55,19.96,184.95,One year,Mailed check
+5674,6260-XLACS,total_variance,total_variance,LOW,39.0,4,19.7,19.96,117.8,One year,Mailed check
+4263,5485-WUYWF,total_variance,total_variance,LOW,38.25,2,66.4,64.99,94.55,Month-to-month,Bank transfer (automatic)
+2505,8433-WXGNA,total_variance,total_variance,LOW,37.8,2,75.7,74.98,189.2,Month-to-month,Electronic check
+3946,3815-SLMEF,total_variance,total_variance,LOW,36.6,3,34.25,34.99,139.35,Month-to-month,Mailed check
+5040,4713-LZDRV,total_variance,total_variance,LOW,35.85,2,79.6,79.95,195.05,Month-to-month,Electronic check
+4968,4398-HSCJH,total_variance,total_variance,LOW,35.15,3,63.6,64.99,155.65,Month-to-month,Electronic check
+1262,4741-WWJQZ,total_variance,total_variance,LOW,34.25,2,80.15,80.0,194.55,Month-to-month,Electronic check
+3736,3489-HHPFY,total_variance,total_variance,LOW,34.05,2,84.05,84.93,134.05,Month-to-month,Electronic check
+4887,2673-ZALNP,total_variance,total_variance,LOW,33.85,7,19.9,19.96,173.15,One year,Mailed check
+3942,4797-MIWUM,total_variance,total_variance,LOW,32.95,7,20.25,19.96,174.7,Month-to-month,Bank transfer (automatic)
+2748,8295-FHIVV,total_variance,total_variance,LOW,32.85,7,19.4,19.96,168.65,Month-to-month,Mailed check
+6830,8148-WOCMK,total_variance,total_variance,LOW,31.8,8,19.6,19.96,125.0,Two year,Credit card (automatic)
+6156,4903-UYAVB,total_variance,total_variance,LOW,29.3,5,19.35,19.96,126.05,Month-to-month,Mailed check
+5312,8053-WWDRO,total_variance,total_variance,LOW,29.3,6,19.5,19.96,146.3,Month-to-month,Bank transfer (automatic)
+2042,3546-GHEAE,total_variance,total_variance,LOW,29.2,7,19.45,19.96,165.35,Two year,Mailed check
+777,9505-SQFSW,total_variance,total_variance,LOW,28.4,3,40.3,39.95,92.5,Month-to-month,Mailed check
+3028,1614-JBEBI,total_variance,total_variance,LOW,28.0,8,20.7,19.96,137.6,Month-to-month,Mailed check
+6569,5647-URDKA,total_variance,total_variance,LOW,27.35,8,19.7,19.96,130.25,Two year,Mailed check
+2951,3345-JHUEO,total_variance,total_variance,LOW,25.1,4,20.2,19.96,55.7,Month-to-month,Electronic check
+3596,2260-USTRB,total_variance,total_variance,LOW,24.45,2,70.2,69.98,115.95,Month-to-month,Bank transfer (automatic)
+2125,7802-EFKNY,total_variance,total_variance,LOW,24.35,5,24.95,24.97,100.4,Month-to-month,Electronic check
+4771,7762-ONLJY,total_variance,total_variance,LOW,23.75,6,19.7,19.96,94.45,One year,Mailed check
+4488,4116-IQRFR,total_variance,total_variance,LOW,23.3,4,24.1,24.96,73.1,One year,Credit card (automatic)
+1142,1641-BYBTK,total_variance,total_variance,LOW,22.85,6,20.2,19.96,98.35,Month-to-month,Mailed check
+5596,2308-STERM,total_variance,total_variance,LOW,22.25,2,19.4,19.96,61.05,Month-to-month,Mailed check
+3812,3620-MWJNE,total_variance,total_variance,LOW,21.6,2,54.45,55.04,87.3,Month-to-month,Mailed check
+106,6180-YBIQI,total_variance,total_variance,LOW,21.3,5,24.3,24.97,100.2,Month-to-month,Mailed check
+3223,6817-WTYHE,total_variance,total_variance,LOW,21.25,2,44.9,45.02,111.05,Month-to-month,Bank transfer (automatic)
+3939,6629-LADHQ,total_variance,total_variance,LOW,21.15,2,50.95,50.03,123.05,Month-to-month,Mailed check
+5918,5144-PQCDZ,total_variance,total_variance,LOW,20.55,4,19.95,19.96,59.25,Month-to-month,Mailed check
+125,7219-TLZHO,total_variance,total_variance,LOW,20.5,4,20.85,19.96,62.9,Month-to-month,Mailed check
+1724,2587-YNLES,total_variance,total_variance,LOW,20.25,6,20.1,19.96,100.35,Two year,Mailed check
+1169,5562-BETPV,total_missing,total_missing,LOW,19.65,1,19.65,19.96,,One year,Mailed check
+6373,6368-TZZDT,total_variance,total_variance,LOW,18.85,4,19.5,19.96,96.85,Two year,Credit card (automatic)
+562,7343-EOBEU,total_variance,total_variance,LOW,18.25,3,23.6,24.96,89.05,Month-to-month,Mailed check
+3044,3677-IYRBF,total_variance,total_variance,LOW,17.85,2,30.4,29.97,78.65,Month-to-month,Electronic check
+5953,4430-YHXGG,total_variance,total_variance,LOW,17.6,4,25.45,24.96,84.2,Month-to-month,Mailed check
+4690,2832-SCUCO,total_variance,total_variance,LOW,17.6,2,19.9,19.96,57.4,Month-to-month,Electronic check
+361,9294-TDIPC,total_variance,total_variance,LOW,17.25,5,20.2,19.96,83.75,Month-to-month,Mailed check
+4899,8993-PHFWD,total_variance,total_variance,LOW,16.85,3,25.25,24.97,58.9,Month-to-month,Electronic check
+5662,4396-KLSEH,total_variance,total_variance,LOW,16.4,4,19.85,19.96,63.0,Month-to-month,Electronic check
+6266,3278-FSIXX,total_variance,total_variance,LOW,16.3,2,45.25,45.02,74.2,Month-to-month,Mailed check
+3140,1142-WACZW,total_variance,total_variance,LOW,15.9,2,29.85,29.98,75.6,Month-to-month,Bank transfer (automatic)
+4455,8410-BGQXN,total_variance,total_variance,LOW,15.8,4,19.4,19.96,93.4,Month-to-month,Mailed check
+4635,9426-SXNHE,total_variance,total_variance,LOW,15.65,2,18.75,19.96,53.15,Month-to-month,Bank transfer (automatic)
+1931,2792-VPPET,total_variance,total_variance,LOW,15.45,3,20.5,19.96,76.95,Month-to-month,Electronic check
+6351,3407-QGWLG,total_variance,total_variance,LOW,15.3,3,20.05,19.96,75.45,Month-to-month,Mailed check
+6259,5066-GFJMM,total_variance,total_variance,LOW,13.95,3,19.9,19.96,45.75,Month-to-month,Mailed check
+1621,6022-KOUQO,total_variance,total_variance,LOW,13.35,2,29.05,29.98,44.75,Month-to-month,Bank transfer (automatic)
+4970,2303-PJYHN,total_variance,total_variance,LOW,12.3,2,19.85,19.96,52.0,Month-to-month,Bank transfer (automatic)
+853,8713-IGZSO,total_variance,total_variance,LOW,12.3,2,24.85,24.96,62.0,Month-to-month,Mailed check
+3622,2933-FILNV,total_variance,total_variance,LOW,12.25,2,24.4,24.97,36.55,Month-to-month,Mailed check
+2699,8150-QUDFX,total_variance,total_variance,LOW,11.9,2,19.85,19.96,51.6,Month-to-month,Mailed check
+2375,9101-NTIXF,total_variance,total_variance,LOW,11.8,2,19.4,19.96,50.6,Month-to-month,Mailed check
+5879,8909-BOLNL,total_variance,total_variance,LOW,11.55,3,21.2,19.96,52.05,One year,Mailed check
+901,1051-GEJLJ,total_variance,total_variance,LOW,11.45,2,19.5,19.96,27.55,Month-to-month,Mailed check
+3928,4390-KYULV,total_variance,total_variance,LOW,10.5,3,20.55,19.96,51.15,Month-to-month,Credit card (automatic)
+4792,7808-DVWEP,total_variance,total_variance,LOW,10.35,3,20.0,19.96,49.65,Month-to-month,Bank transfer (automatic)
+3791,6598-RFFVI,total_variance,total_variance,LOW,10.3,2,19.3,19.96,28.3,One year,Credit card (automatic)
+3081,1777-JYQPJ,total_variance,total_variance,LOW,10.15,2,24.3,24.97,38.45,Month-to-month,Mailed check
+1134,3156-QLHBO,total_variance,total_variance,LOW,9.85,2,19.25,19.96,48.35,Month-to-month,Mailed check
+3476,8610-ZIKJJ,total_variance,total_variance,LOW,8.7,2,20.3,19.96,31.9,One year,Mailed check
+6159,3845-FXCYS,total_variance,total_variance,LOW,8.1,2,19.65,19.96,31.2,Month-to-month,Electronic check
+704,6942-LBFDP,total_variance,total_variance,LOW,7.5,2,20.55,19.96,33.6,Month-to-month,Mailed check
+6278,4195-SMMNX,total_variance,total_variance,LOW,7.5,2,20.35,19.96,33.2,Month-to-month,Mailed check
+4661,0883-EIBTI,total_variance,total_variance,LOW,7.45,2,19.5,19.96,31.55,Month-to-month,Mailed check
+6855,9700-ZCLOT,total_variance,total_variance,LOW,7.3,2,20.0,19.96,32.7,Month-to-month,Mailed check

@@ -1,0 +1,6 @@
+injected_error_type,records,detected,recall
+duplicate_record,42,42,1.0
+overbilled_monthly,43,40,0.93
+total_decimal_shift,42,42,1.0
+total_missing,42,42,1.0
+zero_monthly,42,42,1.0

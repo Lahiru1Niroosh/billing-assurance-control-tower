@@ -1,0 +1,8 @@
+rule,rows_affected,action
+TotalCharges blank/non-numeric,11,converted to NaN
+tenure=0 with blank TotalCharges,11,"not an error: first bill pending; TotalCharges set to 0, flagged is_new_unbilled"
+TotalCharges still missing after rule,0,left as NaN for pre-bill review
+SeniorCitizen 0/1,7043,mapped to No/Yes
+'No internet service' in add-on columns,9156,mapped to No (InternetService column still carries the truth)
+'No phone service' in MultipleLines,682,mapped to No
+duplicate customerID,0,none expected in clean base
