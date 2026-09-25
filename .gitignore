@@ -1,3 +1,54 @@
-.venv/
+# Python
 __pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# DuckDB / local warehouse
+*.duckdb
+*.duckdb.wal
+data/warehouse/
+
+# Generated / local datasets
 data/raw/
+data/interim/
+data/processed/
+
+# Generated reports
+reports/*.xlsx
+reports/*.xls
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
