@@ -9,11 +9,25 @@ import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-DATABASE_PATH = (
+LOCAL_DATABASE_PATH = (
     PROJECT_ROOT
     / "data"
     / "warehouse"
     / "billing_assurance.duckdb"
+)
+DEMO_DATABASE_PATH = (
+    PROJECT_ROOT
+    / "app"
+    / "demo_data"
+    / "billing_assurance_demo.duckdb"
+)
+
+# Use the full local warehouse during development.
+# On deployed environments, fall back to the committed demo snapshot.
+DATABASE_PATH = (
+    LOCAL_DATABASE_PATH
+    if LOCAL_DATABASE_PATH.exists()
+    else DEMO_DATABASE_PATH
 )
 
 def get_connection():

@@ -25,6 +25,9 @@ ENV/
 *.duckdb.wal
 data/warehouse/
 
+# Deployment demo warehouse
+!app/demo_data/billing_assurance_demo.duckdb
+
 # Generated / local datasets
 data/raw/
 data/interim/
