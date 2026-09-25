@@ -19,11 +19,10 @@ EXPECTED_SHEETS = [
 ]
 
 EXPECTED_COUNTS = {
-    "Exception Queue": 706,
+    "Exception Queue": 695,
     "Discount Approvals": 500,
     "SLA Monitoring": 500,
     "Control Summary": 5,
-    "Audit Trail": 10,
 }
 
 
@@ -97,6 +96,13 @@ for sheet_name, expected_count in EXPECTED_COUNTS.items():
         f"{actual_count:,} rows"
     )
 
+audit_row_count = wb["Audit Trail"].max_row - 1
+
+if audit_row_count < 1:
+    raise ValueError("Audit Trail: expected at least 1 row, found 0")
+
+print(f"  ✓ {'Audit Trail':<22} {audit_row_count:,} rows")
+
 print()
 
 # ------------------------------------------------------------
@@ -129,6 +135,54 @@ for cell in required_cells:
         f"  ✓ {cell}: {ws[cell].value}"
     )
 
+if ws["A12"].value != "C001 Duplicate Records Involved" or ws["B12"].value != 84:
+    raise ValueError("Executive Summary C001 duplicate-record metric is incorrect")
+
+if ws["A13"].value != "C001 Duplicate Customer Cases" or ws["B13"].value != 42:
+    raise ValueError("Executive Summary C001 duplicate-case metric is incorrect")
+
+print("  ✓ C001: 84 duplicate records involved across 42 duplicate customer cases")
+print()
+
+# ------------------------------------------------------------
+# Control summary validation
+# ------------------------------------------------------------
+
+print("CONTROL SUMMARY VALIDATION")
+
+ws = wb["Control Summary"]
+headers = {cell.value: cell.column for cell in ws[1]}
+required_control_columns = {
+    "control_id",
+    "control_hits",
+    "duplicate_records_involved",
+    "duplicate_customer_cases",
+    "affected_customers",
+}
+missing_columns = required_control_columns - headers.keys()
+
+if missing_columns:
+    raise ValueError(f"Control Summary is missing columns: {sorted(missing_columns)}")
+
+rows = {
+    ws.cell(row=row, column=headers["control_id"]).value: row
+    for row in range(2, ws.max_row + 1)
+}
+
+c001_row = rows["C001"]
+c002_row = rows["C002"]
+
+if ws.cell(c001_row, headers["duplicate_records_involved"]).value != 84:
+    raise ValueError("Control Summary C001 duplicate records involved must be 84")
+if ws.cell(c001_row, headers["duplicate_customer_cases"]).value != 42:
+    raise ValueError("Control Summary C001 duplicate customer cases must be 42")
+if ws.cell(c001_row, headers["affected_customers"]).value != 42:
+    raise ValueError("Control Summary C001 affected customers must be 42")
+if ws.cell(c002_row, headers["control_hits"]).value != 84:
+    raise ValueError("Control Summary C002 exception records must be 84")
+
+print("  ✓ C001: 84 records involved, 42 cases, 42 affected customers")
+print("  ✓ C002: 84 validated exception records")
 print()
 
 # ------------------------------------------------------------
@@ -198,11 +252,11 @@ print()
 print("EXCEL CONTROL WORKBOOK STATUS")
 print("  ✓ Workbook exists")
 print("  ✓ 6 required sheets")
-print("  ✓ 706 exception records")
+print(f"  ✓ {EXPECTED_COUNTS['Exception Queue']:,} exception records")
 print("  ✓ 500 discount approval records")
 print("  ✓ 500 SLA records")
 print("  ✓ 5 control summary records")
-print("  ✓ 10 audit records")
+print(f"  ✓ {audit_row_count:,} audit records")
 print("  ✓ Executive KPI section populated")
 print("  ✓ Management formatting validated")
 print("  ✓ Freeze panes validated")

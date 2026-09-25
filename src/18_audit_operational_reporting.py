@@ -74,6 +74,13 @@ for control_id, control_name, exception_count, unique_customers, financial_impac
     else:
         control_type = "Unknown"
 
+    notes = (
+        f"{exception_count} duplicate billing records involved across "
+        f"{unique_customers} duplicate customer cases"
+        if control_id == "C001"
+        else "Control execution completed successfully"
+    )
+
     con.execute("""
         INSERT INTO core.control_execution_audit
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -87,7 +94,7 @@ for control_id, control_name, exception_count, unique_customers, financial_impac
         exception_count,
         unique_customers,
         financial_impact,
-        "Control execution completed successfully"
+        notes
     ])
 
 # ------------------------------------------------------------
@@ -113,6 +120,14 @@ SELECT
     SUM(exception_count) AS control_hits,
 
     SUM(unique_customers) AS control_customer_hits,
+
+    SUM(exception_count) FILTER (
+        WHERE control_id = 'C001'
+    ) AS duplicate_records_involved,
+
+    SUM(unique_customers) FILTER (
+        WHERE control_id = 'C001'
+    ) AS duplicate_customer_cases,
 
     ROUND(
         SUM(financial_impact),
@@ -145,6 +160,12 @@ SELECT
     execution_status,
     exception_count,
     unique_customers,
+    CASE
+        WHEN control_id = 'C001' THEN exception_count
+    END AS duplicate_records_involved,
+    CASE
+        WHEN control_id = 'C001' THEN unique_customers
+    END AS duplicate_customer_cases,
     ROUND(financial_impact, 2) AS financial_impact,
     notes
 
@@ -182,6 +203,12 @@ control_summary AS (
         COUNT(*) FILTER (
             WHERE severity = 'HIGH'
         ) AS high_severity_exceptions,
+        COUNT(*) FILTER (
+            WHERE control_id = 'C001'
+        ) AS duplicate_records_involved,
+        COUNT(DISTINCT customer_id) FILTER (
+            WHERE control_id = 'C001'
+        ) AS duplicate_customer_cases,
         ROUND(
             SUM(COALESCE(financial_impact, 0)),
             2
@@ -198,12 +225,18 @@ SELECT
 
     control_summary.active_controls,
     control_summary.total_control_hits,
+    control_summary.duplicate_records_involved,
+    control_summary.duplicate_customer_cases,
+    current_kpis.duplicate_records_involved AS c001_duplicate_records_involved,
+    current_kpis.duplicate_customer_cases AS c001_duplicate_customer_cases,
+    current_kpis.c001_affected_customers,
 
     sla.total_requests,
     sla.sla_met,
     sla.sla_at_risk,
     sla.sla_breached,
-    sla.sla_compliance_pct,
+    sla.sla_met_rate_pct,
+    sla.non_breach_rate_pct,
     sla.avg_turnaround_hours,
     sla.avg_review_turnaround_hours,
 

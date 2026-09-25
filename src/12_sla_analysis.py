@@ -133,6 +133,8 @@ df.to_csv(PROCESSED / "discount_decisions_sla.csv", index=False)
 # Report
 # ------------------------------------------------------------
 n = len(df)
+met = int((df["sla_status"] == "Met").sum())
+at_risk = int((df["sla_status"] == "At Risk").sum())
 breaches = int((df["sla_status"] == "Breached").sum())
 dec = df["decision"].value_counts()
 
@@ -145,29 +147,40 @@ print(f"  Requests           : {n}")
 print(f"  Auto-approved      : {dec.get('AUTO_APPROVE', 0)}")
 print(f"  Manager review     : {dec.get('MANAGER_REVIEW', 0)}")
 print(f"  Declined           : {dec.get('DECLINE', 0)}")
-print(f"  SLA compliance     : {1 - breaches / n:.1%}")
+print(f"  SLA met rate       : {met / n:.1%}")
+print(f"  Non-breach rate    : {(met + at_risk) / n:.1%}")
 print(f"  SLA breaches       : {breaches}")
-print(f"  At risk            : {int((df['sla_status'] == 'At Risk').sum())}")
+print(f"  At risk            : {at_risk}")
 print(f"  Avg turnaround (all)     : {df['turnaround_hours'].mean():.2f} h")
 print(f"  Avg turnaround (reviews) : {df.loc[is_review, 'turnaround_hours'].mean():.2f} business h")
 
 print("\nBY APPROVAL LEVEL")
 lvl = df.groupby("approval_level").agg(
     requests=("request_id", "count"),
+    met=("sla_status", lambda s: (s == "Met").sum()),
+    at_risk=("sla_status", lambda s: (s == "At Risk").sum()),
     target_h=("sla_target_hours", "first"),
     avg_turnaround_h=("turnaround_hours", "mean"),
     breaches=("sla_status", lambda s: (s == "Breached").sum()),
 ).round(2)
-lvl["compliance"] = (1 - lvl["breaches"] / lvl["requests"]).round(3)
+lvl["sla_met_rate"] = (lvl["met"] / lvl["requests"]).round(3)
+lvl["non_breach_rate"] = (
+    (lvl["met"] + lvl["at_risk"]) / lvl["requests"]
+).round(3)
 print(lvl.to_string())
 
 print("\nBY MONTH")
 mon = df.groupby("request_month").agg(
     requests=("request_id", "count"),
+    met=("sla_status", lambda s: (s == "Met").sum()),
+    at_risk=("sla_status", lambda s: (s == "At Risk").sum()),
     review_cases=("decision", lambda s: (s == "MANAGER_REVIEW").sum()),
     breaches=("sla_status", lambda s: (s == "Breached").sum()),
 )
-mon["compliance"] = (1 - mon["breaches"] / mon["requests"]).round(3)
+mon["sla_met_rate"] = (mon["met"] / mon["requests"]).round(3)
+mon["non_breach_rate"] = (
+    (mon["met"] + mon["at_risk"]) / mon["requests"]
+).round(3)
 print(mon.to_string())
 
 print("\nDOES WORKLOAD DRIVE BREACHES? (avg same-day review cases, review requests)")

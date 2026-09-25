@@ -178,15 +178,11 @@ The validation engine implemented billing controls including:
 
 ### C001-type logic
 
-Duplicate billing detection.
+The Python validation flags only the later record in each duplicate `customerID` group. The DuckDB control deliberately retains every record in each duplicate group for investigation. Current result: 84 duplicate records involved across 42 duplicate customer cases/affected customers; these are not 84 independent cases.
 
 ### Missing/zero billing logic
 
-Detection of:
-
-* Missing TotalCharges
-* Zero TotalCharges
-* Zero MonthlyCharges
+The validated Python rule flags missing/zero `TotalCharges` only when `tenure > 0`, and flags `MonthlyCharges <= 0` only when `PhoneService` is Yes or `InternetService` is not No. Tenure zero with blank/zero total is allowed as a new customer whose first bill is pending.
 
 ### Total variance validation
 
@@ -420,9 +416,10 @@ Results:
 ```text
 500 requests
 
-SLA compliance = 93.8%
-SLA breaches   = 31
-At risk        = 23
+SLA met rate = 89.2%
+Non-breach rate = 93.8%
+SLA breaches = 31
+At risk      = 23
 
 Average turnaround all requests ≈ 3.82 h
 Average review turnaround      ≈ 7.70 h
@@ -436,28 +433,28 @@ Manager
 Target 16h
 Average 8.81h
 4 breaches
-92.7% compliance
+92.7% non-breach rate
 
 Senior Manager
 33 cases
 Target 24h
 Average 18.89h
 9 breaches
-72.7% compliance
+72.7% non-breach rate
 
 Supervisor
 158 cases
 Target 8h
 Average 4.97h
 18 breaches
-88.6% compliance
+88.6% non-breach rate
 
 System
 254 cases
 Target 1h
 Average 0.06h
 0 breaches
-100% compliance
+100% non-breach rate
 ```
 
 Monthly SLA analysis was also completed.
@@ -469,7 +466,8 @@ Phase 4 KPI view currently reports:
 446 met
 23 at risk
 31 breached
-89.20% SLA compliance
+89.20% SLA met rate
+93.80% non-breach rate
 3.82h average turnaround
 7.70h average review turnaround
 127.96 breach hours
@@ -607,8 +605,8 @@ controls.exception_queue
 Current control results:
 
 ```text
-C001 Duplicate Billing       84
-C002 Missing Billing Total  95
+C001 Duplicate Records      84 records across 42 cases
+C002 Missing Billing Total  84
 C003 Rate Mismatch           94
 C004 Discount Approval      379
 C005 SLA Monitoring          54
@@ -617,19 +615,19 @@ C005 SLA Monitoring          54
 Total:
 
 ```text
-706 control hits
+695 control hits / exception records
 ```
 
 Financial impact:
 
 ```text
-$83,085.84
+$82,502.28
 ```
 
 Status:
 
 ```text
-OPEN       550
+OPEN       539
 REVIEWED   133
 MONITOR     23
 ```
@@ -637,19 +635,19 @@ MONITOR     23
 Severity:
 
 ```text
-HIGH       601
+HIGH       590
 MEDIUM      58
 LOW         47
 ```
 
 IMPORTANT:
 
-706 control hits are NOT 706 unique customers.
+Control hits/exception records are NOT necessarily unique customers or independent cases. In particular, C001 has 84 duplicate records involved across 42 duplicate customer cases.
 
 Current enterprise-level unique customer count:
 
 ```text
-558
+547
 ```
 
 Some customers can trigger multiple controls.
@@ -679,12 +677,12 @@ controls.v_customer_risk
 Executive KPIs:
 
 ```text
-Control hits              706
-Unique exceptions         706
-Unique customers          558
-Financial impact          $83,085.84
-Open exceptions           550
-High severity             601
+Control hits              695
+Unique exceptions         695
+Unique customers          547
+Financial impact          $82,502.28
+Open exceptions           539
+High severity             590
 Medium severity            58
 Low severity               47
 ```
@@ -701,16 +699,17 @@ C004 Discount Approval
 $29,320.91
 
 C001 Duplicate Billing
-84 hits
+84 duplicate records involved
+42 duplicate customer cases / affected customers
 $4,586.10
 
 C002 Missing Billing Total
-95 hits
-$3,565.85
+84 validated exception records
+$3,110.25
 
 C005 SLA Monitoring
 54 hits
-$127.96
+$0.00
 ```
 
 Customer risk summary:
@@ -719,7 +718,7 @@ Customer risk summary:
 HIGH
 89 customers
 182 control hits
-$28,591.58
+$28,463.62
 
 MEDIUM
 54 customers
@@ -727,9 +726,9 @@ MEDIUM
 $20,176.00
 
 LOW
-415 customers
-415 control hits
-$34,318.26
+404 customers
+404 control hits
+$33,862.66
 ```
 
 IMPORTANT:
@@ -775,8 +774,8 @@ Current run:
 5 controls executed
 5 successful
 0 failed
-706 control hits
-$83,085.84 financial impact
+695 control hits / exception records
+$82,502.28 financial impact
 ```
 
 Operational views:
@@ -927,7 +926,7 @@ The Executive Summary should show:
 ### Operational KPIs
 
 * Open exceptions
-* SLA compliance
+* SLA met rate
 * SLA breaches
 * At-risk SLA cases
 * Average turnaround
@@ -1113,7 +1112,7 @@ Financial Exposure
 Open Exceptions
 Unique Customers
 High Severity
-SLA Compliance
+SLA Met Rate
 SLA Breaches
 Discount Requests
 ```
@@ -1200,7 +1199,8 @@ Any scenario calculations must clearly distinguish assumptions from actual histo
 
 Show:
 
-* SLA compliance
+* SLA met rate
+* Non-breach rate
 * Breaches
 * At risk
 * Average turnaround

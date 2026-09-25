@@ -249,6 +249,8 @@ kpis = [
     ("High Severity", kpi_row["high_severity_exceptions"]),
     ("Medium Severity", kpi_row["medium_severity_exceptions"]),
     ("Low Severity", kpi_row["low_severity_exceptions"]),
+    ("C001 Duplicate Records Involved", kpi_row["duplicate_records_involved"]),
+    ("C001 Duplicate Customer Cases", kpi_row["duplicate_customer_cases"]),
 ]
 
 for row_num, (label, value) in enumerate(kpis, start=4):
@@ -293,7 +295,7 @@ sla_met = int((sla["sla_status"] == "Met").sum())
 sla_at_risk = int((sla["sla_status"] == "At Risk").sum())
 sla_breached = int((sla["sla_status"] == "Breached").sum())
 
-sla_compliance = (
+sla_met_rate = (
     sla_met / total_requests * 100
     if total_requests
     else 0
@@ -304,7 +306,8 @@ sla_items = [
     ("SLA Met", sla_met),
     ("SLA At Risk", sla_at_risk),
     ("SLA Breached", sla_breached),
-    ("SLA Compliance %", sla_compliance),
+    ("SLA Met Rate %", sla_met_rate),
+    ("Non-Breach Rate %", (sla_met + sla_at_risk) / total_requests * 100 if total_requests else 0),
 ]
 
 for row_num, (label, value) in enumerate(
@@ -314,11 +317,11 @@ for row_num, (label, value) in enumerate(
     ws.cell(row=row_num, column=1, value=label)
     ws.cell(row=row_num, column=2, value=value)
 
-ws["B20"].number_format = "0.00%"
-
-# Correct percentage value
-ws["B20"] = sla_compliance / 100
-ws["B20"].number_format = "0.00%"
+for row in range(16, 16 + len(sla_items)):
+    cell = ws.cell(row=row, column=2)
+    if "Rate %" in ws.cell(row=row, column=1).value:
+        cell.number_format = "0.00%"
+        cell.value = ws.cell(row=row, column=2).value / 100
 
 ws.column_dimensions["A"].width = 28
 ws.column_dimensions["B"].width = 18

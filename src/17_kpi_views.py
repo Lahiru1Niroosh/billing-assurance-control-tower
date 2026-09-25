@@ -55,6 +55,15 @@ WITH exception_summary AS (
             WHERE severity = 'LOW'
         ) AS low_severity_exceptions
     FROM controls.exception_queue
+),
+
+c001_summary AS (
+    SELECT
+        COUNT(*) AS duplicate_records_involved,
+        COUNT(DISTINCT customer_id) AS duplicate_customer_cases,
+        COUNT(DISTINCT customer_id) AS affected_customers
+    FROM controls.exception_queue
+    WHERE control_id = 'C001'
 )
 
 SELECT
@@ -65,8 +74,12 @@ SELECT
     open_exceptions,
     high_severity_exceptions,
     medium_severity_exceptions,
-    low_severity_exceptions
-FROM exception_summary;
+    low_severity_exceptions,
+    c001_summary.duplicate_records_involved,
+    c001_summary.duplicate_customer_cases,
+    c001_summary.affected_customers AS c001_affected_customers
+FROM exception_summary
+CROSS JOIN c001_summary;
 """)
 
 # ------------------------------------------------------------
@@ -87,6 +100,7 @@ SELECT
     eq.severity,
     eq.status,
     ROUND(COALESCE(eq.financial_impact, 0), 2) AS financial_impact,
+    ROUND(eq.breach_hours, 2) AS breach_hours,
     eq.detected_at AS exception_date,
     eq.exception_reason AS description
 FROM controls.exception_queue AS eq
@@ -115,6 +129,13 @@ SELECT
     bcm.control_name,
     COUNT(*) AS control_hits,
     COUNT(DISTINCT eq.customer_id) AS unique_customers,
+    COUNT(*) FILTER (
+        WHERE eq.control_id = 'C001'
+    ) AS duplicate_records_involved,
+    COUNT(DISTINCT eq.customer_id) FILTER (
+        WHERE eq.control_id = 'C001'
+    ) AS duplicate_customer_cases,
+    COUNT(DISTINCT eq.customer_id) AS affected_customers,
     ROUND(SUM(COALESCE(eq.financial_impact, 0)), 2) AS financial_impact,
 
     COUNT(*) FILTER (
@@ -174,7 +195,20 @@ SELECT
         )
         / NULLIF(COUNT(*), 0),
         2
-    ) AS sla_compliance_pct,
+    ) AS sla_met_rate_pct,
+
+    ROUND(
+        100.0 * (
+            COUNT(*) FILTER (
+                WHERE sla_status = 'Met'
+            )
+            + COUNT(*) FILTER (
+                WHERE sla_status = 'At Risk'
+            )
+        )
+        / NULLIF(COUNT(*), 0),
+        2
+    ) AS non_breach_rate_pct,
 
     ROUND(
         AVG(turnaround_hours),
@@ -322,7 +356,8 @@ FROM controls.v_sla_kpis
 """).fetchdf()
 
 print(sla.to_string(index=False, formatters={
-    "sla_compliance_pct": "{:.2f}".format,
+    "sla_met_rate_pct": "{:.2f}".format,
+    "non_breach_rate_pct": "{:.2f}".format,
     "avg_turnaround_hours": "{:.2f}".format,
     "avg_review_turnaround_hours": "{:.2f}".format,
     "total_breach_hours": "{:.2f}".format

@@ -175,22 +175,26 @@ These results are based on the project's synthetic validation environment and sh
 
 The control framework quantifies financial value associated with exceptions.
 
-| Control | Control Hits | Unique Customers | Financial Impact |
+| Control | Exception Records / Hits | Affected Customers | Financial Impact |
 |---|---:|---:|---:|
 | C001 — Duplicate Billing | 84 | 42 | $4,586.10 |
-| C002 — Missing Billing Total | 95 | 95 | $3,565.85 |
+| C002 — Missing Billing Total | 84 | 84 | $3,110.25 |
 | C003 — Rate Mismatch | 94 | 94 | $45,485.02 |
 | C004 — Discount Approval | 379 | 379 | $29,320.91 |
-| C005 — SLA Monitoring | 54 | 54 | $127.96 |
+| C005 — SLA Monitoring | 54 | 54 | $0.00 |
+
+For **C001**, the 84 exception records are **84 duplicate records involved** across **42 duplicate customer cases** (42 affected customers). Both billing records in each case are retained for investigation; 84 is not the number of independent cases.
+
+**C002** now follows the validated Phase 2 eligibility rules. Its current 84 records comprise records with missing/zero `TotalCharges` and `tenure > 0`, plus records with non-positive `MonthlyCharges` and an active billable service. A tenure-zero customer may legitimately have blank/zero `TotalCharges` while the first bill is pending.
 
 ### Enterprise Control Tower
 
 ```text
-Control Hits          706
-Unique Customers      558
-Financial Impact      $83,085.84
-Open Exceptions       550
-High Severity         601
+Control Hits          695
+Unique Customers      547
+Financial Impact      $82,502.28
+Open Exceptions       539
+High Severity         590
 Medium Severity       58
 Low Severity          47
 ```
@@ -286,14 +290,15 @@ Discount requests are monitored against operational SLA targets.
 | SLA Met | 446 |
 | At Risk | 23 |
 | Breached | 31 |
-| SLA Compliance | **89.2%** |
+| SLA Met Rate | **89.2%** |
+| Non-Breach Rate | **93.8%** |
 | Average Turnaround | 3.82 hours |
 | Average Review Turnaround | 7.70 hours |
 | Total Breach Hours | 127.96 |
 
 ### Approval-Level Performance
 
-| Approval Level | Target | Avg Turnaround | Breaches | Compliance |
+| Approval Level | Target | Avg Turnaround | Breaches | Non-Breach Rate |
 |---|---:|---:|---:|---:|
 | System | 1h | 0.06h | 0 | 100.0% |
 | Supervisor | 8h | 4.97h | 18 | 88.6% |
@@ -325,12 +330,13 @@ The operational queue supports analysis by:
 - status
 - customer
 - financial impact
+- SLA breach hours
 
 Current operational status:
 
 ```text
-Total Control Hits     706
-Open                   550
+Total Control Hits     695
+Open                   539
 Reviewed               133
 Monitor                 23
 ```
@@ -351,9 +357,9 @@ The customer-risk layer aggregates control activity at customer level.
 
 | Risk Band | Customers | Control Hits | Financial Impact |
 |---|---:|---:|---:|
-| High | 89 | 182 | $28,591.58 |
+| High | 89 | 182 | $28,463.62 |
 | Medium | 54 | 109 | $20,176.00 |
-| Low | 415 | 415 | $34,318.26 |
+| Low | 404 | 404 | $33,862.66 |
 
 The risk classification represents **observed operational control exposure**.
 
@@ -472,39 +478,39 @@ Provides:
 
 Provides:
 
-- SLA compliance
+- SLA met rate
 - turnaround performance
 - approval-level performance
 - monthly trends
 - workload analysis
 - SLA exception investigation
 
-### 06 — Customer Risk
+### 06 — Customer Exposure
 
 Provides:
 
-- customer risk distribution
+- customer exposure bands from observed control activity
 - customer exposure
 - control concentration
 - financial impact
-- customer investigation
+- customer investigation and prioritization
+- explicit caveat that bands are not predictive customer scores
 
 ---
 
 ## Dashboard UX
 
-The application uses a dark operational **control-tower interface** with:
+The application uses a shared dark operational **control-tower design system** with:
 
-- glassmorphism components
-- animated hero sections
-- KPI cards
-- Plotly charts
-- operational status badges
-- responsive layouts
-- investigation filters
-- management interpretation panels
+- centralized color, typography, surface and component tokens in `app/utils/ui.py`
+- responsive KPI and information cards with compact context labels
+- consistent Plotly themes and semantic colors for severity, decisions, SLA state and exposure bands
+- live DuckDB-backed executive metrics and workspace health in the sidebar
+- responsive workspace navigation and page layouts
+- keyboard-visible focus states and reduced-motion support
+- operational filters, queues, investigation details and management interpretation
 
-Detailed content is organized into tabs to keep each dashboard compact and operationally focused.
+Detailed content is organized into clearly named tabs. Customer exposure groupings reflect observed control activity and are not predictive scores; control-identified financial exposure is not confirmed revenue loss.
 
 ---
 
@@ -568,8 +574,8 @@ A validated operational run produced:
 Controls Executed      5
 Successful             5
 Failed                 0
-Control Hits           706
-Financial Impact       $83,085.84
+Control Hits           695
+Financial Impact       $82,502.28
 ```
 
 ---
@@ -589,7 +595,8 @@ billing-assurance-control-tower/
 │   │   ├── 5_SLA_Operations.py
 │   │   └── 6_Customer_Risk.py
 │   └── utils/
-│       └── database.py
+│       ├── database.py
+│       └── ui.py
 │
 ├── src/
 │   ├── 01_profile_raw.py

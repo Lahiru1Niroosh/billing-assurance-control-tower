@@ -1,3 +1,11 @@
+from utils.ui import (
+    RISK_COLORS,
+    inject_styles,
+    money,
+    render_footer,
+    render_sidebar,
+    style_chart,
+)
 import html
 import pandas as pd
 import plotly.express as px
@@ -8,428 +16,21 @@ from utils.database import run_query
 # PAGE CONFIG
 # ============================================================
 st.set_page_config(
-    page_title="Customer Risk & Exposure Command Center",
+    page_title="Customer Exposure Command Center",
     page_icon="👥",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="auto"
 )
+
+inject_styles()
+render_sidebar()
 
 # ============================================================
 # NEXT-LEVEL CSS & ANIMATIONS
 # ============================================================
-st.markdown("""
-<style>
-    /* -------------------------------------------------------
-       GLOBAL & BACKGROUND
-    ------------------------------------------------------- */
-    .stApp {
-        background: 
-            radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.15), transparent 35%),
-            radial-gradient(circle at 90% 15%, rgba(168, 85, 247, 0.14), transparent 35%),
-            radial-gradient(circle at 50% 90%, rgba(6, 182, 212, 0.1), transparent 40%),
-            linear-gradient(135deg, #07111f 0%, #0b1628 50%, #172033 100%);
-        color: #f8fafc;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
-
-    .block-container {
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-        max-width: 1500px;
-    }
-
-    /* -------------------------------------------------------
-       ANIMATIONS
-    ------------------------------------------------------- */
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulseGlow {
-        0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
-    }
-
-    @keyframes floatOrb {
-        0% { transform: translate(0, 0); }
-        50% { transform: translate(-20px, 15px); }
-        100% { transform: translate(10px, -10px); }
-    }
-
-    /* -------------------------------------------------------
-       HERO SECTION
-    ------------------------------------------------------- */
-    .hero {
-        position: relative;
-        overflow: hidden;
-        padding: 40px 45px;
-        border-radius: 24px;
-        background: linear-gradient(135deg, rgba(3, 105, 161, 0.48), rgba(126, 34, 206, 0.32), rgba(8, 145, 178, 0.2));
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        margin-bottom: 30px;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .hero::before {
-        content: "";
-        position: absolute;
-        width: 300px; height: 300px;
-        right: -80px; top: -120px;
-        border-radius: 50%;
-        background: rgba(14, 165, 233, 0.25);
-        filter: blur(50px);
-        animation: floatOrb 8s ease-in-out infinite;
-    }
-
-    .hero::after {
-        content: "";
-        position: absolute;
-        width: 250px; height: 250px;
-        left: -100px; bottom: -130px;
-        border-radius: 50%;
-        background: rgba(168, 85, 247, 0.22);
-        filter: blur(50px);
-        animation: floatOrb 10s ease-in-out infinite reverse;
-    }
-
-    .hero-content { position: relative; z-index: 2; }
-
-    .hero h1 {
-        margin: 0;
-        font-size: 2.5rem;
-        font-weight: 800;
-        letter-spacing: -1px;
-        background: linear-gradient(90deg, #ffffff, #c4b5fd, #7dd3fc);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-        color: #cbd5e1;
-        font-size: 1.1rem;
-        margin: 10px 0 18px 0;
-        font-weight: 400;
-    }
-
-    .badge {
-        display: inline-flex;
-        align-items: center;
-        padding: 8px 16px;
-        border-radius: 999px;
-        color: #ddd6fe;
-        background: rgba(168, 85, 247, 0.14);
-        border: 1px solid rgba(192, 132, 252, 0.4);
-        font-size: 0.85rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        animation: pulseGlow 3s infinite;
-    }
-
-    /* -------------------------------------------------------
-       KPI CARDS
-    ------------------------------------------------------- */
-    .kpi-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 18px;
-        margin-bottom: 25px;
-    }
-
-    .card {
-        position: relative;
-        padding: 22px;
-        border-radius: 20px;
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(16px);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: hidden;
-        animation: fadeInUp 0.6s ease-out backwards;
-    }
-
-    /* Staggered animation delays */
-    .card:nth-child(1) { animation-delay: 0.1s; }
-    .card:nth-child(2) { animation-delay: 0.15s; }
-    .card:nth-child(3) { animation-delay: 0.2s; }
-    .card:nth-child(4) { animation-delay: 0.25s; }
-    .card:nth-child(5) { animation-delay: 0.1s; }
-    .card:nth-child(6) { animation-delay: 0.15s; }
-    .card:nth-child(7) { animation-delay: 0.2s; }
-    .card:nth-child(8) { animation-delay: 0.25s; }
-
-    .card:hover {
-        transform: translateY(-6px) scale(1.01);
-        border-color: rgba(196, 181, 253, 0.4);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 20px rgba(168, 85, 247, 0.15);
-    }
-
-    .card::after {
-        content: "";
-        position: absolute;
-        width: 120px; height: 120px;
-        right: -40px; bottom: -50px;
-        border-radius: 50%;
-        opacity: 0.15;
-        filter: blur(15px);
-        transition: opacity 0.3s ease;
-    }
-
-    .card:hover::after { opacity: 0.3; }
-
-    .card .icon {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        display: block;
-    }
-
-    .card .label {
-        color: #94a3b8;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        margin-bottom: 6px;
-    }
-
-    .card .value {
-        font-size: 1.7rem;
-        font-weight: 800;
-        color: #f8fafc;
-        letter-spacing: -0.5px;
-    }
-
-    /* Accent Colors */
-    .card.purple::after { background: #a855f7; }
-    .card.cyan::after { background: #06b6d4; }
-    .card.blue::after { background: #3b82f6; }
-    .card.orange::after { background: #f97316; }
-    .card.red::after { background: #ef4444; }
-    .card.yellow::after { background: #eab308; }
-    .card.green::after { background: #22c55e; }
-    .card.pink::after { background: #ec4899; }
-
-    /* -------------------------------------------------------
-       SECTION HEADERS
-    ------------------------------------------------------- */
-    .section-header {
-        margin: 35px 0 20px 0;
-        font-size: 1.4rem;
-        font-weight: 750;
-        color: #f8fafc;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .section-header::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: linear-gradient(90deg, rgba(255,255,255,0.15), transparent);
-    }
-
-    /* -------------------------------------------------------
-       TABS (Standardized & Clean)
-    ------------------------------------------------------- */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 6px;
-        background: rgba(255, 255, 255, 0.03);
-        padding: 6px;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        margin-bottom: 20px;
-    }
-
-    .stTabs [data-baseweb="tab"] {
-        border-radius: 12px;
-        padding: 10px 22px;
-        color: #94a3b8;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: all 0.2s ease;
-        border: none;
-        background: transparent;
-    }
-
-    .stTabs [data-baseweb="tab"]:hover {
-        color: #e2e8f0;
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(14, 165, 233, 0.15));
-        color: #ffffff;
-        box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
-        border: 1px solid rgba(196, 181, 253, 0.25);
-    }
-
-    /* -------------------------------------------------------
-       INFO / MANAGEMENT CARDS
-    ------------------------------------------------------- */
-    .info-card {
-        padding: 26px;
-        border-radius: 20px;
-        background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        height: 100%;
-        transition: transform 0.25s ease, border-color 0.25s ease;
-        animation: fadeInUp 0.6s ease-out backwards;
-    }
-
-    .info-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(196, 181, 253, 0.3);
-    }
-
-    .info-card h4 {
-        margin: 0 0 14px 0;
-        color: #c4b5fd;
-        font-size: 1.1rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .info-card p {
-        color: #cbd5e1;
-        line-height: 1.7;
-        font-size: 0.95rem;
-        margin: 0;
-    }
-
-    .info-card strong {
-        color: #f8fafc;
-        font-weight: 700;
-    }
-
-    .info-card small {
-        color: #64748b;
-        display: block;
-        margin-top: 10px;
-        font-size: 0.8rem;
-    }
-
-    /* -------------------------------------------------------
-       PLOTLY CHART CONTAINERS
-    ------------------------------------------------------- */
-    .stPlotlyChart {
-        border-radius: 18px;
-        overflow: hidden;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 10px;
-        transition: border-color 0.3s ease;
-    }
-
-    .stPlotlyChart:hover {
-        border-color: rgba(255, 255, 255, 0.15);
-    }
-
-    /* -------------------------------------------------------
-       FILTER CONTAINER
-    ------------------------------------------------------- */
-    div[data-testid="stVerticalBlockBorderWrapper"] {
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 20px;
-        margin-bottom: 25px;
-        backdrop-filter: blur(10px);
-    }
-
-    /* -------------------------------------------------------
-       DATAFRAME
-    ------------------------------------------------------- */
-    .stDataFrame {
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    /* -------------------------------------------------------
-       SELECT BOX, MULTISELECT & TEXT INPUT
-    ------------------------------------------------------- */
-    .stSelectbox [data-baseweb="select"] > div,
-    .stMultiSelect [data-baseweb="select"] > div,
-    .stTextInput input {
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        color: #e2e8f0;
-    }
-
-    .stSelectbox [data-baseweb="select"] > div:hover,
-    .stMultiSelect [data-baseweb="select"] > div:hover,
-    .stTextInput input:hover {
-        border-color: rgba(196, 181, 253, 0.4);
-    }
-
-    .stMultiSelect [data-baseweb="tag"] {
-        background: rgba(168, 85, 247, 0.2);
-        border: 1px solid rgba(192, 132, 252, 0.3);
-        color: #ddd6fe;
-        border-radius: 8px;
-    }
-
-    /* -------------------------------------------------------
-       EXPANDER & INFO BOXES
-    ------------------------------------------------------- */
-    .streamlit-expanderHeader {
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 12px;
-        color: #cbd5e1;
-        font-weight: 600;
-    }
-
-    .stAlert {
-        border-radius: 14px;
-        border: 1px solid rgba(255,255,255,0.08);
-    }
-</style>
-""", unsafe_allow_html=True)
-
-
 # ============================================================
 # HELPER FUNCTIONS
 # ============================================================
-def card(icon, label, value, accent="purple"):
-    return f'''
-    <div class="card {accent}">
-        <div class="icon">{icon}</div>
-        <div class="label">{label}</div>
-        <div class="value">{value}</div>
-    </div>
-    '''
-
-
-def money(v):
-    return f"${float(v):,.2f}"
-
-
-def style(fig, h=350):
-    fig.update_layout(
-        height=h,
-        paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="rgba(0,0,0,0)",
-        font_color="#e5e7eb",
-        margin=dict(l=15, r=15, t=55, b=15),
-        hovermode="x unified"
-    )
-    return fig
-
-
 def priority(row):
     if row.high_severity_hits > 0 and row.open_exceptions > 0:
         return "Critical Attention"
@@ -455,7 +56,7 @@ except Exception as error:
     st.stop()
 
 if risk.empty or exceptions.empty:
-    st.error("No customer-risk or exception data is available from DuckDB.")
+    st.info("No customer exposure data is available to display.")
     st.stop()
 
 risk = risk.rename(columns={"customer_risk": "risk_band"})
@@ -487,18 +88,18 @@ customers["priority"] = customers.apply(priority, axis=1)
 st.markdown('''
 <div class="hero">
     <div class="hero-content">
-        <h1>Customer Risk & Exposure Command Center</h1>
-        <p>Customer-level control exposure • Financial impact • Exception concentration • Investigation priority</p>
-        <span class="badge">● CUSTOMER RISK MONITORING ACTIVE</span>
+        <h1>Customer Exposure & Investigation</h1>
+        <p>Observed control activity • Financial exposure • Exception concentration • Investigation priority</p>
+        <span class="badge">● EXPOSURE MONITORING ACTIVE</span>
     </div>
 </div>
 ''', unsafe_allow_html=True)
 
 st.markdown('''
 <div class="signal-strip">
-    <span><span class="signal-dot"></span> Risk monitoring active</span>
+    <span><span class="signal-dot"></span> Observed exposure monitoring</span>
     <span>Data source • DuckDB</span>
-    <span>Exposure model • live</span>
+    <span>Exposure aggregation • live</span>
     <span>Investigation queue • prioritized</span>
 </div>
 ''', unsafe_allow_html=True)
@@ -564,10 +165,10 @@ st.markdown(f'''
 # TABS
 # ============================================================
 overview, exposure, investigation, management = st.tabs([
-    "📊 Risk Overview",
-    "📈 Exposure Analysis",
-    "🧠 Customer Investigation",
-    "💼 Management"
+    "Overview",
+    "Exposure Analysis",
+    "Investigation Queue",
+    "Management View"
 ])
 
 profile = customers.groupby("risk_band", as_index=False).agg(
@@ -587,22 +188,24 @@ with overview:
     
     with a:
         st.plotly_chart(
-            style(px.pie(
+            style_chart(px.pie(
                 profile, names="risk_band", values="customers", 
-                hole=.6, template="plotly_dark", 
+                color="risk_band", color_discrete_map=RISK_COLORS,
+                hole=.6, template="plotly_dark",
                 title="Customers by Control Exposure Risk Band"
             )), 
-            use_container_width=True
+            width="stretch"
         )
     
     with b:
         st.plotly_chart(
-            style(px.bar(
+            style_chart(px.bar(
                 profile, x="risk_band", y="financial_impact", 
-                text_auto=".2s", template="plotly_dark", 
+                color="risk_band", color_discrete_map=RISK_COLORS,
+                text_auto=".2s", template="plotly_dark",
                 title="Financial Impact by Risk Band"
             )), 
-            use_container_width=True
+            width="stretch"
         )
     
     profile["impact_per_customer"] = profile.financial_impact / profile.customers
@@ -617,7 +220,7 @@ with overview:
         "hits_per_customer": "Hits / Customer"
     })
     profile_table["Financial Impact"] = profile_table["Financial Impact"].map(money)
-    st.dataframe(profile_table, use_container_width=True, hide_index=True)
+    st.dataframe(profile_table, width="stretch", hide_index=True)
 
 # ------------------------------------------------------------
 # TAB 2: EXPOSURE ANALYSIS
@@ -628,28 +231,28 @@ with exposure:
     top = customers.nlargest(top_n, "financial_impact")
     
     st.plotly_chart(
-        style(px.bar(
+        style_chart(px.bar(
             top.sort_values("financial_impact"), 
             x="financial_impact", y="customer_id", 
-            orientation="h", color="risk_band", 
+            orientation="h", color="risk_band", color_discrete_map=RISK_COLORS,
             hover_data=["control_hits", "controls_involved", "open_exceptions"], 
             template="plotly_dark", 
             title="Highest Observed Customer Exposure"
         ), 420), 
-        use_container_width=True
+        width="stretch"
     )
     
     a, b = st.columns(2)
     with a:
         st.plotly_chart(
-            style(px.scatter(
+            style_chart(px.scatter(
                 customers, x="control_hits", y="financial_impact", 
-                color="risk_band", 
+                color="risk_band", color_discrete_map=RISK_COLORS,
                 hover_data=["customer_id", "controls_involved", "highest_severity"], 
                 template="plotly_dark", 
                 title="Control Concentration"
             )), 
-            use_container_width=True
+            width="stretch"
         )
     
     with b:
@@ -658,12 +261,12 @@ with exposure:
             financial_impact=("financial_impact", "sum")
         )
         st.plotly_chart(
-            style(px.bar(
+            style_chart(px.bar(
                 mix, x="control_id", y="financial_impact", 
                 text_auto=".2s", template="plotly_dark", 
                 title="Exposure by Control"
             )), 
-            use_container_width=True
+            width="stretch"
         )
 
 # ------------------------------------------------------------
@@ -706,7 +309,7 @@ with investigation:
             "reviewed_exceptions", "monitor_exceptions", "highest_severity", "priority"
         ]].copy()
         table["financial_impact"] = table.financial_impact.map(money)
-        st.dataframe(table, use_container_width=True, hide_index=True, height=420)
+        st.dataframe(table, width="stretch", hide_index=True, height=420)
         
         selected_id = st.selectbox("Select Customer", filtered.customer_id.tolist())
         selected = filtered[filtered.customer_id == selected_id].iloc[0]
@@ -732,7 +335,7 @@ with investigation:
             status=("status", lambda x: ", ".join(sorted(set(x))))
         )
         activity["financial_impact"] = activity.financial_impact.map(money)
-        st.dataframe(activity, use_container_width=True, hide_index=True)
+        st.dataframe(activity, width="stretch", hide_index=True)
 
 # ------------------------------------------------------------
 # TAB 4: MANAGEMENT
@@ -747,7 +350,7 @@ with management:
                 "customer_id", "control_hits", "financial_impact", 
                 "open_exceptions", "highest_severity", "priority"
             ]].assign(financial_impact=lambda x: x.financial_impact.map(money)),
-            use_container_width=True, hide_index=True, height=380
+            width="stretch", hide_index=True, height=380
         )
     else:
         st.info("No high-risk customers are present.")
@@ -765,12 +368,4 @@ with management:
     with st.expander("Data & Metric Notes"):
         st.write("Data is synthetic/project data. Financial impact is modeled or recorded control exposure, not confirmed revenue loss. Investigation priority is a presentation aid, not a new control rule.")
 
-# ============================================================
-# FOOTER
-# ============================================================
-st.markdown('''
-<div style="text-align:center; color:#64748b; padding:30px 24px; font-size:.82rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;">
-    <strong>Billing Assurance & Revenue Protection Control Tower</strong><br>
-    Financial impact represents control-identified exposure requiring investigation, not confirmed realized revenue loss.
-</div>
-''', unsafe_allow_html=True)
+render_footer("Exposure bands summarize observed control activity and are not predictive customer scores.")

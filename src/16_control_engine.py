@@ -31,7 +31,8 @@ CREATE OR REPLACE TABLE controls.c001_duplicate_billing AS
 
 WITH duplicate_customers AS (
     SELECT
-        customerID
+        customerID,
+        COUNT(*) AS duplicate_record_count
     FROM staging.billing_test_set
     WHERE customerID IS NOT NULL
     GROUP BY customerID
@@ -40,16 +41,21 @@ WITH duplicate_customers AS (
 
 SELECT
     'C001' AS control_id,
-    'Duplicate Billing' AS exception_type,
+    'Duplicate Billing Record' AS exception_type,
     'HIGH' AS severity,
     b.record_id,
     b.customerID AS customer_id,
     NULL::VARCHAR AS request_id,
     b.MonthlyCharges AS financial_impact,
+    NULL::DOUBLE AS breach_hours,
     'OPEN' AS status,
     'Billing Operations' AS owner,
     CURRENT_TIMESTAMP AS detected_at,
-    'Customer appears in multiple billing records' AS exception_reason
+    CONCAT(
+        'Record involved in a duplicate customer case with ',
+        d.duplicate_record_count,
+        ' billing records; all records are retained for investigation'
+    ) AS exception_reason
 
 FROM staging.billing_test_set b
 
@@ -63,7 +69,13 @@ c001_count = con.execute("""
     FROM controls.c001_duplicate_billing
 """).fetchone()[0]
 
-print(f"  Exceptions detected: {c001_count}")
+c001_cases = con.execute("""
+    SELECT COUNT(DISTINCT customer_id)
+    FROM controls.c001_duplicate_billing
+""").fetchone()[0]
+
+print(f"  Duplicate records involved: {c001_count}")
+print(f"  Duplicate customer cases : {c001_cases}")
 
 
 # ============================================================
@@ -83,26 +95,30 @@ SELECT
     customerID AS customer_id,
     NULL::VARCHAR AS request_id,
     COALESCE(MonthlyCharges, 0) AS financial_impact,
+    NULL::DOUBLE AS breach_hours,
     'OPEN' AS status,
     'Billing Operations' AS owner,
     CURRENT_TIMESTAMP AS detected_at,
 
     CASE
-        WHEN TotalCharges IS NULL
+        WHEN tenure > 0 AND TotalCharges IS NULL
             THEN 'TotalCharges is missing'
-        WHEN TotalCharges = 0
+        WHEN tenure > 0 AND TotalCharges = 0
             THEN 'TotalCharges is zero'
-        WHEN MonthlyCharges = 0
-            THEN 'MonthlyCharges is zero'
+        WHEN MonthlyCharges <= 0
+             AND (PhoneService OR InternetService <> 'No')
+            THEN 'MonthlyCharges is non-positive while a service is active'
         ELSE 'Billing amount anomaly'
     END AS exception_reason
 
 FROM staging.billing_test_set
 
 WHERE
-       TotalCharges IS NULL
-    OR TotalCharges = 0
-    OR MonthlyCharges = 0;
+       ((TotalCharges IS NULL OR TotalCharges = 0) AND tenure > 0)
+    OR (
+        MonthlyCharges <= 0
+        AND (PhoneService OR InternetService <> 'No')
+    );
 """)
 
 
@@ -111,7 +127,7 @@ c002_count = con.execute("""
     FROM controls.c002_missing_billing_total
 """).fetchone()[0]
 
-print(f"  Exceptions detected: {c002_count}")
+print(f"  Validated missing/zero billing exceptions: {c002_count}")
 
 
 # ============================================================
@@ -131,6 +147,7 @@ SELECT
     customerID AS customer_id,
     NULL::VARCHAR AS request_id,
     COALESCE(exposure, ABS(rate_residual), 0) AS financial_impact,
+    NULL::DOUBLE AS breach_hours,
     'OPEN' AS status,
     'Billing Operations' AS owner,
     CURRENT_TIMESTAMP AS detected_at,
@@ -180,6 +197,7 @@ SELECT
     request_id,
 
     ABS(net_economic_impact) AS financial_impact,
+    NULL::DOUBLE AS breach_hours,
 
     CASE
         WHEN decision = 'MANAGER_REVIEW'
@@ -245,7 +263,8 @@ SELECT
     customer_id,
     request_id,
 
-    COALESCE(breach_hours, 0) AS financial_impact,
+    0.0::DOUBLE AS financial_impact,
+    COALESCE(breach_hours, 0.0)::DOUBLE AS breach_hours,
 
     CASE
         WHEN sla_status = 'Breached'
