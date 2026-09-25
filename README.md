@@ -8,6 +8,19 @@ The project demonstrates how raw customer and billing data can be transformed in
 
 ---
 
+### 🚀 Live Demo
+
+**[Launch the Billing Assurance Control Tower](https://billing-assurance-control-tower-demo.streamlit.app/)**
+
+The interactive dashboard provides:
+- Executive control monitoring
+- Billing integrity analysis
+- Exception management
+- Discount decision controls
+- SLA operational monitoring
+- Customer risk segmentation
+---
+
 ## Project Overview
 
 Billing operations can generate thousands of customer and transaction records, making manual identification of billing errors, pricing anomalies, discount risks, and SLA failures difficult.
